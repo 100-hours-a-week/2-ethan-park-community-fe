@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    justify-content: center;  /* 왼쪽과 오른쪽 끝으로 분배 */
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+    padding: 0;
+    color: #000;
+    border-bottom: 1px solid black;
+    position: relative; /* 내부 요소 위치 조정을 위해 추가 */
+    box-sizing: border-box; /* 여백 포함하여 전체 너비 100%로 설정 */
+}
+
+/* 로고 스타일 */
+.navbar-logo img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;  /* 로고와 제목 사이 간격 */
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+}
+
+/* 메뉴 스타일 */
+.navbar-title {
+    text-align: center; /* 가운데 정렬 */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* 동그란 모양 */
+    cursor: pointer; /* 클릭 가능하게 */
+}

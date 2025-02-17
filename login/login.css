@@ -1,0 +1,56 @@
+/* 네비게이션 바 스타일 */
+.navbar {
+    display: flex;
+    justify-content: center;  /* 왼쪽과 오른쪽 끝으로 분배 */
+    align-items: center;
+    padding: 10px 20px;  /* 여백 */
+    position: sticky;  /* 스크롤해도 상단에 고정 */
+    width: 100%;
+    color: #000;
+    border-bottom: 2px solid black;
+}
+/* 메뉴 스타일 */
+.navbar-title {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.login-form label,
+.login-form input {
+    margin-bottom: 10px;
+}
+
+.login-form input {
+    padding: 8px;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; /* 처음에는 에러 메시지를 숨김 */
+}
+button {
+    background-color: #ACA0EB;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+}

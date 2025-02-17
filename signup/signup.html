@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <div id="navbar-container"></div>
+
+    <div class="container">
+        <form class="signup-form" id="signupForm">
+            <div class="profile-container">
+                <div class="signup-title">
+                    <label for="profileImageInput" class="profile-label">
+                        <div class="profile-title">프로필 사진</div>
+                        <div class="helper-text">*helper-text</div>
+                    </label>
+                </div>
+                <div class ="signup-profile-img">
+                    <input type="file" id="signup-profile-img-input">
+                    <label for="signup-profile-img-input" class="custom-file-label">+</label>
+                </div>
+            </div>
+            <label for="email">이메일*</label>
+            <div class="helper-text">*helper-text</div>
+            <input type="email" id="email" name="email" placeholder="이메일">
+            <p id="emailInput-error" class="error-message"></p>
+            <p id="emailEmpty-error" class="error-message"></p>
+            <p id="emailDuplication-error" class="error-message"></p>
+
+            <label for="password1">비밀번호*</label>
+            <div class="helper-text">*helper-text</div>
+            <input type="password" id="password1" name="password1" placeholder="비밀번호">
+            <p id="password1Empty-error" class="error-message"></p>
+            <p id="passwordSize-error" class="error-message"></p>
+
+            <label for="password2">비밀번호 확인*</label>
+            <div class="helper-text">*helper-text</div>
+            <input type="password" id="password2" name="password2" placeholder="비밀번호 확인">
+            <p id="password2Empty-error" class="error-message"></p>
+            <p id="passwordDiff-error" class="error-message"></p>
+
+            <label for="nickname">닉네임*</label>
+            <div class="helper-text">*helper-text</div>
+            <input type="nickname" id="nickname" name="nickname" placeholder="닉네임">
+            <p id="nicknameEmpty-error" class="error-message"></p>
+            <p id="nicknameSpace-error" class="error-message"></p>
+            <p id="nicknameSize-error" class="error-message"></p>
+
+            <button type="submit" id="signupBtn">회원가입</button>
+        </form>
+
+        <div class="button-container">
+            <button id="loginGoBtn">로그인하러 가기</button>
+        </div>
+        
+    </div>
+
+    <script src="signup.js" defer></script>
+    <script src="../navbar/navbar.js"></script>
+</body>
+</html>
