@@ -45,11 +45,15 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         submitButton.style.backgroundColor = "#7F6AEE";
         
         setTimeout(function() {
-            window.location.href = "signup.html";
+            window.location.href = "../posts/posts.html";
         }, 3000);
 
     }
     else {
         alert("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
     }
+});
+// 회원가입 화면으로 이동하는 버튼 클릭 이벤트
+document.getElementById("signupGoBtn").addEventListener("click", function() {
+    window.location.href = "../signup/signup.html";
 });

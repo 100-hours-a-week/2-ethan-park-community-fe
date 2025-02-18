@@ -67,10 +67,13 @@ document.addEventListener("DOMContentLoaded", function () {
         commentDeleteModal.style.display = "none"; // 모달 닫기
     });
 
-    // 기존 게시글 수정 및 삭제 처리
+    // detail-post.js (수정 버튼 클릭 시 데이터 저장 후 페이지 이동)
     editButton.addEventListener("click", function () {
-        window.location.href = "edit-post.html";
+        localStorage.setItem("postTitle", postData.title);
+        localStorage.setItem("postContent", postData.content);
+        window.location.href = "../edit-post/edit-post.html";
     });
+
 
     deleteButton.addEventListener("click", function () {
         modal.style.display = "block"; // 모달 표시
@@ -84,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const target = document.getElementById("post-title");
         if (target) {
             alert("삭제되었습니다.");
-            window.location.href = "./posts.html";
+            window.location.href = "../posts/posts.html";
         } else {
             alert("삭제할 요소가 존재하지 않습니다.");
         }
@@ -113,6 +116,8 @@ document.addEventListener("DOMContentLoaded", function () {
         addCommentBtn.disabled = true;
     }
 
+    let editingIndex = null; // 🔹 현재 수정 중인 댓글의 인덱스를 추적
+
     // 댓글 목록 업데이트
     function renderComments() {
         commentList.innerHTML = "";
@@ -125,22 +130,16 @@ document.addEventListener("DOMContentLoaded", function () {
             let editBtn = document.createElement("button");
             editBtn.textContent = "수정";
             editBtn.onclick = function () {
-                commentInput.value = postData.comments[index];
+                commentInput.value = postData.comments[index]; // 기존 댓글을 입력창에 표시
+                editingIndex = index; // 🔹 수정할 댓글의 인덱스를 저장
                 addCommentBtn.textContent = "댓글 수정";
-                addCommentBtn.onclick = function () {
-                    if (commentInput.value.trim()) {
-                        postData.comments[index] = commentInput.value.trim();
-                        renderComments();
-                    }
-                    resetCommentButton();
-                };
             };
 
             // 삭제 버튼
             let deleteBtn = document.createElement("button");
             deleteBtn.textContent = "삭제";
             deleteBtn.onclick = function () {
-                showDeleteCommentModal(index); // 삭제 모달 표시
+                showDeleteCommentModal(index);
             };
 
             li.appendChild(editBtn);
@@ -152,11 +151,31 @@ document.addEventListener("DOMContentLoaded", function () {
         resetCommentButton();
     }
 
-    // 댓글 버튼 초기화 함수
-    function resetCommentButton() {
-        addCommentBtn.textContent = "댓글 등록";
-        addCommentBtn.onclick = addComment;
+    // 댓글 추가 및 수정 처리
+    function handleComment() {
+        let commentText = commentInput.value.trim();
+        if (!commentText) return;
+
+        if (editingIndex !== null) {
+            // ✅ 기존 댓글을 삭제하고 새로운 내용으로 변경
+            postData.comments[editingIndex] = commentText;
+            editingIndex = null; // 🔹 수정 모드 종료
+        } else {
+            // ✅ 새 댓글 추가
+            postData.comments.push(commentText);
+        }
+
+        renderComments();
+        commentInput.value = "";
+        resetCommentButton();
     }
 
-    addCommentBtn.addEventListener("click", addComment);
-});
+    // 댓글 버튼 초기화
+    function resetCommentButton() {
+        addCommentBtn.textContent = "댓글 등록";
+        editingIndex = null; // 🔹 수정 모드 해제
+    }
+
+    // 댓글 버튼 클릭 이벤트
+    addCommentBtn.addEventListener("click", handleComment);
+})

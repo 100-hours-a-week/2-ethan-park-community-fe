@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("imageInput"); // 이미지 업로드 요소
     const preview = document.getElementById("preview"); // 이미지 미리보기 요소
 
-    // 기존 데이터 불러오기 (detail-post.js에서 postData 가져옴)
-    titleInput.value = postData.title;
-    contentInput.value = postData.content;
+    // localStorage에서 데이터 가져오기
+    titleInput.value = localStorage.getItem("postTitle") || "";
+    contentInput.value = localStorage.getItem("postContent") || "";
 
     // 제목 길이 제한 (최대 26자)
     titleInput.addEventListener("input", function () {
@@ -49,6 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("이동할 URL:", window.location.origin + "/detail-post.html");
 
         // 페이지 이동 (경로 확인 후 수정 필요)
-        window.location.href = "./detail-post.html"; // 같은 폴더에 detail-post.html이 있는 경우
+        window.location.href = "../detail-post/detail-post.html"; // 같은 폴더에 detail-post.html이 있는 경우
     });
 });

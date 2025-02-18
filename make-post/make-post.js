@@ -52,6 +52,6 @@ submitButton.addEventListener("click", function() {
         // 서버에 전송하는 로직 추가 가능
 
         // 🚀 post.html로 리다이렉트
-        window.location.href = "posts.html";
+        window.location.href = "../posts/posts.html";
     }
 });

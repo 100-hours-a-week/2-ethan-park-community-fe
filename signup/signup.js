@@ -11,7 +11,7 @@ document.getElementById("email").addEventListener("input", function() {
     }
 });
 
-// 로그인 폼 제출 시 유효성 검사
+// 회원가입 폼 제출 시 유효성 검사
 document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault(); // 폼 제출 기본 동작을 막습니다.
 
@@ -25,13 +25,14 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const emailInputError = document.getElementById('emailInput-error');
     const emailEmptyError = document.getElementById('emailEmpty-error');
     const emailDuplicationError = document.getElementById('emailDuplication-error');
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,20}$/;
 
     //비밀번호 관련 에러
     const password1EmptyError = document.getElementById('password1Empty-error');
     const password2EmptyError = document.getElementById('password2Empty-error');
     const passwordDiffError = document.getElementById('passwordDiff-error');
     const passwordSizeError = document.getElementById('passwordSize-error');
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,20}$/;
+
 
     //닉네임 관련 에러
     const nicknameEmptyError = document.getElementById('nicknameEmpty-error');
@@ -118,7 +119,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         submitButton.style.backgroundColor = "#7F6AEE";
         
         setTimeout(function() {
-            window.location.href = "login.html";
+            window.location.href = "../login/login.html";
         }, 1000);
 
     }
@@ -129,5 +130,5 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 });
 // 로그인 화면으로 이동하는 버튼 클릭 이벤트
 document.getElementById("loginGoBtn").addEventListener("click", function() {
-    window.location.href = "login.html";
+    window.location.href = "../login/login.html";
 });

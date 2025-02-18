@@ -1,28 +1,40 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
 }
 
 h1 {
     text-align: center;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.container {
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    width: 50%;
+    margin: 20px auto;
+}
+.postForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
 }
 
-label {
-    font-weight: bold;
+.form-title,
+.form-content,
+.form-img {
+    width: 95%; /* 버튼과 동일한 너비 설정 */
+    display: flex;
+    flex-direction: column;
 }
 
 input, textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
 }
 
 #imagePreview {
@@ -34,7 +46,7 @@ input, textarea {
 }
 
 .btn-submit {
-    width: 100%;
+    width: 100%; /* 버튼 크기 조정 */
     padding: 10px;
     background-color: #ACA0EB;
     color: white;
@@ -42,11 +54,22 @@ input, textarea {
     border-radius: 5px;
     font-size: 16px;
     cursor: not-allowed;
+    margin-top: 20px;
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
 }
 
 .btn-submit.active {
     background-color: #7F6AEE;
     cursor: pointer;
+}
+
+.helper-text {
+    color: #f80000;
+    
 }
 
 .error {

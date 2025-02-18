@@ -50,7 +50,7 @@ function loadPosts() {
         const formattedComments = formatNumber(post.comments);
         
         postContainer.innerHTML = `
-            <a href="post-detail.html?id=${post.id}" class="post-title">${truncateTitle(post.title)}</a>
+            <a href="detail-post/detail-post.html?id=${post.id}" class="post-title">${truncateTitle(post.title)}</a>
             <div class="post-meta">
                 <div class="meta-left">
                     <span>좋아요 ${formattedLike}</span>
@@ -64,7 +64,7 @@ function loadPosts() {
         `;
 
         postContainer.addEventListener("click", () => {
-            window.location.href = `post-detail.html?id=${post.id}`;
+            window.location.href = `detail-post/detail-post.html?id=${post.id}`;
         });
 
         postList.appendChild(postContainer);
@@ -77,7 +77,7 @@ window.onload = loadPosts;
 // 🔹 게시물 작성 버튼 클릭 시 이동
 document.getElementById("writePostBtn").addEventListener("click", function() {
     alert("게시물 작성 페이지로 이동합니다.");
-    window.location.href = "write-post.html";
+    window.location.href = "../make-post/make-post.html";
 });
 
 
@@ -100,7 +100,7 @@ function loadMorePosts() {
         const formattedComments = formatNumber(post.comments);
 
         postContainer.innerHTML = `
-            <a href="post-detail.html?id=${post.id}" class="post-title">${truncateTitle(post.title)}</a>
+            <a href="../detail-post/detail-post.html?id=${post.id}" class="post-title">${truncateTitle(post.title)}</a>
             <div class="post-meta">
                 <div class="meta-left">
                     <span>좋아요 ${post.like}</span>
@@ -114,7 +114,7 @@ function loadMorePosts() {
         `;
 
         postContainer.addEventListener("click", () => {
-            window.location.href = `post-detail.html?id=${post.id}`;
+            window.location.href = `../detail-post/detail-post.html?id=${post.id}`;
         });
 
         postList.appendChild(postContainer);
@@ -137,10 +137,3 @@ window.onload = loadPosts;
 
 // 🔹 스크롤 이벤트 리스너 추가
 window.addEventListener("scroll", handleScroll);
-
-// 🔹 게시물 작성 버튼 클릭 시 이동
-document.getElementById("writePostBtn").addEventListener("click", function() {
-    alert("게시물 작성 페이지로 이동합니다.");
-    window.location.href = "write-post.html";
-});
-
