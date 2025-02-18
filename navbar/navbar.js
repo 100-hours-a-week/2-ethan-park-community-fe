@@ -30,6 +30,15 @@ function setupDropdownToggle() {
             event.stopPropagation();
             dropdown.classList.toggle("show");
         });
+
+        // ✅ 비밀번호수정 클릭 시 페이지 이동 이벤트 추가
+        let passwordEdit = dropdown.querySelector("li:nth-child(2)"); // 두 번째 li (비밀번호수정)
+        if (passwordEdit) {
+            passwordEdit.addEventListener("click", function() {
+                window.location.href = "../edit-password/edit-password.html";
+            });
+        }
+        
     } else {
         console.error("Navbar 요소를 찾을 수 없음");
     }
