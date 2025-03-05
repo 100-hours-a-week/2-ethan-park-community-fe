@@ -1,59 +1,56 @@
-// 이메일 입력에 대한 유효성 검사
-document.getElementById("email").addEventListener("input", function() {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const emailInput = this.value;
-    const errorText = document.getElementById("email-error");
+import { validateEmail, validateLoginPassword } from "../validator/validationUser";
 
-    if (!emailPattern.test(emailInput)) {
-        errorText.style.display = "block"; // 이메일 오류 메시지 표시
-    } else {
-        errorText.style.display = "none"; // 이메일 오류 메시지 숨김
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const submitButton = document.getElementById("loginBtn");
+
+    emailInput.addEventListener("input", () => validateEmail(emailInput));
+    passwordInput.addEventListener("input", () => validateLoginPassword(passwordInput));
+
+    if(form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const isValidEmail = validateEmail(emailInput);
+            const isValidPassword = validateLoginPassword(passwordInput);
+
+            if (isValidEmail && isValidPassword) {
+                submitButton.style.backgroundColor = "#7F6AEE";
+                fetch("../data/user.json")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("네트워크 응답에 문제가 있습니다.");
+                        }
+                        return response.json();
+                    })
+                    .then(userData => {
+                        if(
+                            userData.email == emailInput.value &&
+                            userData.password == passwordInput.value
+                        ) {
+                            console.log("로그인 성공");
+                            alert("로그인 성공!");
+                        } else {
+                            console.log("로그인 실패 : 일치하는 정보 없음");
+                            alert("이메일 또는 비밀번호가 올바르지 않습니다.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("사용자 데이터를 불러오는 중 오류 발생:", error);
+                        alert("로그인 중 오류가 발생했습니다.");
+                    });
+                    
+                
+            }
+        });
     }
+
+    // 회원가입 화면으로 이동하는 버튼 클릭 이벤트
+    document.getElementById("signupGoBtn").addEventListener("click", function() {
+        window.location.href = "../signup/signup.html";
+    });
 });
 
-// 로그인 폼 제출 시 유효성 검사
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // 폼 제출 기본 동작을 막습니다.
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const emailError = document.getElementById('email-error');
-    const passwordError = document.getElementById('password-error');
-    const submitButton = document.querySelector('button'); // 로그인 버튼
-
-    let isValid = true;
-
-    // 이메일 형식 검사
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        emailError.style.display = "block";
-        isValid = false;
-    } else {
-        emailError.style.display = "none";
-    }
-
-    // 비밀번호 검사
-    if (password === "") {
-        passwordError.style.display = "block"; // 비밀번호를 입력하지 않으면 오류 메시지 표시
-        isValid = false;
-    } else {
-        passwordError.style.display = "none"; // 비밀번호 입력이 있으면 오류 메시지 숨김
-        // 로그인 처리 로직을 여기에 추가
-    }
-
-    if (isValid) {
-        submitButton.style.backgroundColor = "#7F6AEE";
-        
-        setTimeout(function() {
-            window.location.href = "../posts/posts.html";
-        }, 3000);
-
-    }
-    else {
-        alert("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
-    }
-});
-// 회원가입 화면으로 이동하는 버튼 클릭 이벤트
-document.getElementById("signupGoBtn").addEventListener("click", function() {
-    window.location.href = "../signup/signup.html";
-});
